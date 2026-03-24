@@ -103,10 +103,10 @@ public final class OracleCacheSchemaExecutor {
         if (cacheConfigurations.isEmpty()) {
             return;
         }
-        String upsert_cache_config_call = "{ call MN_CACHE_UPSERT_CONFIG(?, ?, ?, ?, ?, ?, ?, ?) }".replace("MN", dataSourceConfiguration.getPrefix());
-        String register_cleanup_job_call = "{ call MN_CACHE_REGISTER_CLEANUP_JOB(?, ?) }".replace("MN", dataSourceConfiguration.getPrefix());
-        try (CallableStatement upsertConfig = connection.prepareCall(upsert_cache_config_call);
-             CallableStatement registerCleanupJob = connection.prepareCall(register_cleanup_job_call)) {
+        String upsertCacheConfigCall = "{ call MN_CACHE_UPSERT_CONFIG(?, ?, ?, ?, ?, ?, ?, ?) }".replace("MN", dataSourceConfiguration.getPrefix());
+        String registerCleanupJobCall = "{ call MN_CACHE_REGISTER_CLEANUP_JOB(?, ?) }".replace("MN", dataSourceConfiguration.getPrefix());
+        try (CallableStatement upsertConfig = connection.prepareCall(upsertCacheConfigCall);
+             CallableStatement registerCleanupJob = connection.prepareCall(registerCleanupJobCall)) {
             for (OracleCacheConfiguration cacheConfiguration : cacheConfigurations) {
                 OffsetDateTime nowUtc = OffsetDateTime.now(ZoneOffset.UTC);
                 String cacheName = cacheConfiguration.getCacheName();
