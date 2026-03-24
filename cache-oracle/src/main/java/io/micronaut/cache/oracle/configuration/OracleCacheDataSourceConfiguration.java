@@ -27,7 +27,7 @@ import io.micronaut.context.annotation.ConfigurationProperties;
 public final class OracleCacheDataSourceConfiguration {
 
     private String datasource;
-    private String prefix = "MN";
+    private String prefix;
 
     public String getDatasource() {
         if (datasource == null || datasource.isBlank()) {
@@ -46,7 +46,7 @@ public final class OracleCacheDataSourceConfiguration {
 
     public String getPrefix() {
         if (prefix == null || prefix.isBlank()) {
-            return "MN";
+            throw new IllegalStateException("micronaut.cache.oracle.prefix must be configured");
         }
         return prefix;
     }

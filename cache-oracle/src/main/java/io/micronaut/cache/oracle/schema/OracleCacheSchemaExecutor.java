@@ -80,7 +80,6 @@ public final class OracleCacheSchemaExecutor {
         try (Connection connection = openConnection();
              Statement statement = connection.createStatement()) {
             for (String sql : statements) {
-                // LOG.info("Running statement {}", sql);
                 try {
                     statement.execute(sql);
                 } catch (SQLException e) {
@@ -249,8 +248,6 @@ public final class OracleCacheSchemaExecutor {
         LOG.info("Using DataSource '{}' for Oracle cache initialization", dataSourceName);
 
         Environment environment = beanContext.getBean(Environment.class);
-        LOG.info("Prefix property {}", environment.getProperty("micronaut.cache.oracle.prefix", String.class));
-        LOG.info("Datasource property {}", environment.getProperty("micronaut.cache.oracle.datasource", String.class));
         String prefix = "datasources." + dataSourceName + ".";
         String url = environment.getProperty(prefix + "url", String.class).orElseThrow(() ->
             new IllegalStateException("No datasource URL configured for '" + dataSourceName + "'")

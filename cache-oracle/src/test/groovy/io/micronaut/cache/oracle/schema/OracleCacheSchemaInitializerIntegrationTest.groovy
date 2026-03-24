@@ -215,6 +215,7 @@ class OracleCacheSchemaInitializerIntegrationTest extends OracleIntegrationSuppo
         given:
         ApplicationContext context = ApplicationContext.run([
             'micronaut.cache.oracle.datasource'   : 'missing',
+            'micronaut.cache.oracle.prefix'       : 'MN',
             'datasources.default.url'             : oracle.jdbcUrl,
             'datasources.default.username'        : oracle.username,
             'datasources.default.password'        : oracle.password,
@@ -240,6 +241,7 @@ class OracleCacheSchemaInitializerIntegrationTest extends OracleIntegrationSuppo
         given:
         ApplicationContext context = ApplicationContext.run([
             'micronaut.cache.oracle.datasource'      : 'secondary',
+            'micronaut.cache.oracle.prefix'          : 'MN',
             'datasources.default.url'                : oracle.jdbcUrl,
             'datasources.default.username'           : oracle.username,
             'datasources.default.password'           : oracle.password,
